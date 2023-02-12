@@ -1,16 +1,12 @@
 import { useState } from "react";
-import { useRecoilState } from "recoil";
-import { todoListState } from "../atoms";
-import { getId } from "../utils/Id";
+import { useTodoList } from "../recoil/TodoListState";
 
 export const TodoItemCreator = () => {
   const [input, setInput] = useState("");
-  const [, setTodoList] = useRecoilState(todoListState);
+  const { addTodoList } = useTodoList();
+
   const addItem = () => {
-    setTodoList((oldTodoList) => [
-      ...oldTodoList,
-      { id: getId(), text: input, isComplate: false },
-    ]);
+    addTodoList(input);
     setInput("");
   };
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {

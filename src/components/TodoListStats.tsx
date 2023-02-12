@@ -1,13 +1,13 @@
-import { useRecoilValue } from "recoil";
-import { todoListStatsState } from "../selectors";
+import { todoSelectors } from "../recoil/TodoListState";
 
 export const TodoListStats = () => {
+  const { useTodoStats } = todoSelectors;
   const {
     todoListNum,
     todoListComplatedNum,
     todoListUncomplatedNum,
     percentCompleted,
-  } = useRecoilValue(todoListStatsState);
+  } = useTodoStats();
 
   return (
     <>
